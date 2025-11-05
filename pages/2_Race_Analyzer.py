@@ -10,6 +10,7 @@ import pandas as pd
 from scipy import stats
 import plotly.express as px
 from f1_helpers import TEAM_COLORS, COMPOUND_COLORS 
+import os # <-- CRUCIAL FIX: Import OS for file system checks
 
 # --- 1. PAGE CONFIGURATION ---
 st.set_page_config(
@@ -20,7 +21,13 @@ st.set_page_config(
 
 # Enable the FastF1 cache
 try:
-    fastf1.Cache.enable_cache('./fastf1_cache')
+    cache_dir = './fastf1_cache'
+    # FIX: Create the directory if it doesn't exist (crucial for deployment)
+    if not os.path.exists(cache_dir):
+        os.makedirs(cache_dir)
+        st.info("Created missing FastF1 cache directory.")
+        
+    fastf1.Cache.enable_cache(cache_dir)
 except Exception as e:
     st.error(f"Error enabling FastF1 cache: {e}")
     st.stop()
@@ -181,7 +188,7 @@ if st.sidebar.button("Analyze Race"):
             for compound in compounds:
                 if compound is None: continue
                 
-                stint_laps = winner_laps[winner_laps['Compound'] == compound]
+                stint_laps = winner_laps[stint_laps['Compound'] == compound]
                 clean_laps = stint_laps.pick_wo_box().pick_track_status('1').copy() 
 
                 if len(clean_laps) < 3:
