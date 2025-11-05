@@ -31,13 +31,17 @@ def load_data():
     try:
         # Load the correct 2021-2025 file
         data = pd.read_csv('season_2021-2025_analysis.csv', index_col=0)
-        # This turns the 'Driver' index back into a regular column
-        data = data.reset_index()
+        
+        # --- FIX: Ensure the Driver column exists for the app logic ---
+        if 'Driver' not in data.columns and data.index.name == 'Driver':
+            data = data.reset_index()
+        # --- END FIX ---
+        
         return data
     except FileNotFoundError:
-        st.error("Error: 'season_2021-2025_analysis.csv' not found.")
-        st.error("Please run master_analysis.py first to generate the data.")
-        return pd.DataFrame()
+        st.error("Error: 'season_2021-2025_analysis.csv' not found. Please ensure this file was successfully committed to GitHub.")
+        # Return an empty DataFrame with the required column names to prevent a crash
+        return pd.DataFrame(columns=['Driver', 'TopSpeedST', 'AvgDegradation', 'PositionsGained', 'AvgConsistency', 'Points'])
 
 # Load the master dataframe
 master_df = load_data()
