@@ -1,0 +1,18 @@
+# Virtual Environment
+venv/
+
+# Python Caching
+__pycache__/
+*.pyc
+
+# Jupyter/IDE Files
+.ipynb_checkpoints/
+analysis.ipynb
+
+# FastF1 Cache (Optional to ignore, but included below)
+# The cache is needed for deployment, so we will NOT ignore it, 
+# but we will ignore the temporary files it creates.
+# fastf1_cache/
+
+# Temp Files
+*.log

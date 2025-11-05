@@ -1,0 +1,12 @@
+[theme]
+# Use F1-style dark mode background
+backgroundColor="#0E1117"
+secondaryBackgroundColor="#262730"
+
+# Set a primary color (F1 Red/Teal look)
+# Choose one: F1 Red for Ferrari/Aggression, or Aqua for Mercedes/Modernity
+# I recommend Red for high contrast:
+primaryColor="#F91536" 
+
+textColor="#FAFAFA" # White text
+font="sans serif"

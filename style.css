@@ -1,0 +1,28 @@
+/* style.css */
+/* --- WIDEN MAIN CONTENT AREA --- */
+section.main {
+    padding-top: 1rem; /* Reduce large top margin */
+    padding-left: 2rem; /* Reduce large side margin */
+    padding-right: 2rem; /* Reduce large side margin */
+}
+
+/* --- ADJUST HEADERS (OPTIONAL FONT SIZE) --- */
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* --- CLEAN UP THE STREAMLIT SIDEBAR --- */
+[data-testid="stSidebarContent"] {
+    background-color: #000000; /* Pure black sidebar */
+    padding-left: 1.5rem;
+}
+
+/* --- INFO BOX STYLING (For the 'Top Speed Paradox' box) --- */
+/* Makes the info box less obtrusive and more like a tool tip */
+div.stAlert {
+    border-left: 5px solid #F91536 !important; /* F1 Red Border */
+    border-radius: 5px;
+    background-color: #262730; /* Dark gray fill */
+    color: #FAFAFA;
+}
